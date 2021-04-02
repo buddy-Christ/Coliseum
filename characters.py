@@ -4,17 +4,6 @@ class Human:
     health = 100
     endurance = 100
 
-    def punch(self):
-        if endurance > 10:
-            return True
-        else:
-            return False
-
-    def kick(self):
-        if endurance > 15:
-            return True
-        else:
-            return False
 
     def block(self):
         apperPart = 0       #defence head flag
