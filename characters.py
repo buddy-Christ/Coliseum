@@ -1,40 +1,43 @@
-#Creat class with base specifications
+#Create class with base specifications
 
 class Human:
-    health = 100
+    health = 40
     endurance = 100
+    __blocked = 0
+    headBang = 0       #target of attack flag
+    middleBang = 0       #target of attack flag
+    punch = 0               #type of attack flag
+    kick = 0                #type of attack flag
 
 
-    def block(self):
-        apperPart = 0       #defence head flag
-        lowerPart = 0       #defence middle flag
-        blocked = int(input('Enter 1 for block head or 2 for block middle: '))
-        if blocked == 1:
-            if endurance > 5:
-                apperPart += 1
-                endurance -= 5
-        if blocked == 2:
-            if endurance > 5:
-                lowerPart += 1
-                endurance -= 5
+    def blocked(self):      #getter
+        return self.__blocked
 
-    def attack(self):
-        apperPartBang = 0       #target of attack flag
-        lowerPartBang = 0       #target of attack flag
-        punch = 0               #type of attack flag
-        kick = 0                #type of attack flag
 
-        bang = int(input('Enter 1 for punch or 2 for kick: '))      #type of attack
-        target = int(input('Enter 1 for bang head or 2 for bang middle: '))     #target of attack
-        if bang == 1:
-            if endurance > 10:
-                punch += 1
-                endurance -= 10
-        if bang == 2:
-            if endurance > 10:
-                kick += 1
-                endurance -= 10
-        if target == 1:
-            apperPartBang += 1
-        else:
-            lowerPartBang += 1
+    def block(self, blocked):       #setter
+        self.__blocked = 0
+        if blocked == 1 or blocked == 2:            #1 for head block and 2 for middle block
+            if self.endurance > 5:
+                self.endurance -= 5
+                self.__blocked = blocked
+
+
+    def attack(self, typeAttack, targetAttack):
+        self.headBang = 0
+        self.middleBang = 0
+        self.punch = 0
+        self.kick = 0
+        if self.endurance > 10:
+            if typeAttack == 1:
+                self.endurance -= 5
+                self.punch = typeAttack
+            if typeAttack == 2:
+                self.endurance -= 10
+                self.kick = typeAttack
+            if targetAttack == 1:
+                self.headBang = targetAttack
+            if targetAttack == 2:
+                self.middleBang = targetAttack
+
+    def show(self):
+        return 'Health: {0} Endurance: {1} Block: {2}'.format(self.health, self.endurance, self.blocked())
