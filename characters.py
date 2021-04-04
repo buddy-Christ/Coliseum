@@ -1,7 +1,7 @@
 #Create class with base specifications
 
 class Human:
-    health = 40
+    health = 50
     endurance = 100
     __blocked = 0
     headBang = 0       #target of attack flag
